@@ -2,11 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const todoForm = document.getElementById("todo-form");
     const todoInput = document.getElementById("todo-input");
     const todoList = document.getElementById("todo-list");
-// Select DOM elements
-const addButton = document.getElementById("add-task-btn");
-const taskInput = document.getElementById("task-input");
-const taskList = document.getElementById("task-list");
-
 
     // Handle form submit
     todoForm.addEventListener("submit", (e) => {
@@ -17,4 +12,33 @@ const taskList = document.getElementById("task-list");
             todoInput.value = "";
         }
     });
+
+    // Add task to list
+    function addTask(text) {
+        const li = document.createElement("li");
+        li.classList.add("todo-item");
+
+        const span = document.createElement("span");
+        span.textContent = text;
+
+        const completeBtn = document.createElement("button");
+        completeBtn.textContent = "✔️";
+        completeBtn.className = "complete-btn";
+        completeBtn.addEventListener("click", () => {
+            li.classList.toggle("completed");
+        });
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "🗑️";
+        deleteBtn.className = "delete-btn";
+        deleteBtn.addEventListener("click", () => {
+            li.remove();
+        });
+
+        li.appendChild(span);
+        li.appendChild(completeBtn);
+        li.appendChild(deleteBtn);
+        todoList.appendChild(li);
+    }
+});
 
